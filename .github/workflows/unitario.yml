@@ -1,0 +1,27 @@
+name: unitario
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        filePath: ["A33 - COPIA (4)/frontend/src/Apptest.js"]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: 
+          # Substitua 'your-test-command' pelo comando de teste específico do seu projeto
+          echo "Running tests for ${{ matrix.filePath }}"
+          npm test -- --file="${{ matrix.filePath }}"
